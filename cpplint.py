@@ -3895,46 +3895,13 @@ def CheckBraces(filename, clean_lines, linenum, error):
 
   line = clean_lines.elided[linenum]        # get rid of comments and strings
 
-  if Match(r'\s*{\s*$', line):
-    # We allow an open brace to start a line in the case where someone is using
-    # braces in a block to explicitly create a new scope, which is commonly used
-    # to control the lifetime of stack-allocated variables.  Braces are also
-    # used for brace initializers inside function calls.  We don't detect this
-    # perfectly: we just don't complain if the last non-whitespace character on
-    # the previous non-blank line is ',', ';', ':', '(', '{', or '}', or if the
-    # previous line starts a preprocessor block. We also allow a brace on the
-    # following line if it is part of an array initialization and would not fit
-    # within the 80 character limit of the preceding line.
-    prevline = GetPreviousNonBlankLine(clean_lines, linenum)[0]
-    if (not Search(r'[,;:}{(]\s*$', prevline) and
-        not Match(r'\s*#', prevline) and
-        not (GetLineWidth(prevline) > _line_length - 2 and '[]' in prevline)):
+  # Curly braces must start on next line except for do/while, initializer lists
+  #if Match(r'.*[A-Za-z):]\s{\s*$', line):
+  if Match(r'.*[A-Za-z):]\s{\s*$', line):
+    # Exception for do/while structure
+    if not Match(r'\s*do\s{*$', line):
       error(filename, linenum, 'whitespace/braces', 4,
-            '{ should almost always be at the end of the previous line')
-
-  # An else clause should be on the same line as the preceding closing brace.
-  if Match(r'\s*else\b\s*(?:if\b|\{|$)', line):
-    prevline = GetPreviousNonBlankLine(clean_lines, linenum)[0]
-    if Match(r'\s*}\s*$', prevline):
-      error(filename, linenum, 'whitespace/newline', 4,
-            'An else should appear on the same line as the preceding }')
-
-  # If braces come on one side of an else, they should be on both.
-  # However, we have to worry about "else if" that spans multiple lines!
-  if Search(r'else if\s*\(', line):       # could be multi-line if
-    brace_on_left = bool(Search(r'}\s*else if\s*\(', line))
-    # find the ( after the if
-    pos = line.find('else if')
-    pos = line.find('(', pos)
-    if pos > 0:
-      (endline, _, endpos) = CloseExpression(clean_lines, linenum, pos)
-      brace_on_right = endline[endpos:].find('{') != -1
-      if brace_on_left != brace_on_right:    # must be brace after if
-        error(filename, linenum, 'readability/braces', 5,
-              'If an else has a brace on one side, it should have it on both')
-  elif Search(r'}\s*else[^{]*$', line) or Match(r'[^}]*else\s*{', line):
-    error(filename, linenum, 'readability/braces', 5,
-          'If an else has a brace on one side, it should have it on both')
+              '{ must be on next line')
 
   # Likewise, an else should never have the else clause on the same line
   if Search(r'\belse [^\s{]', line) and not Search(r'\belse if\b', line):

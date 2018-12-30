@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+2.0.0
+-----
+* First sebi2k1 release to support adapted style guide
+
 1.3.0
 -----
 

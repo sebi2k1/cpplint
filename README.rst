@@ -1,29 +1,8 @@
 cpplint - static code checker for C++
 =====================================
 
-.. image:: https://travis-ci.org/cpplint/cpplint.svg?branch=master
-    :target: https://travis-ci.org/cpplint/cpplint
-
-.. image:: https://img.shields.io/pypi/v/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
-
-.. image:: https://img.shields.io/pypi/pyversions/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
-
-.. image:: https://img.shields.io/pypi/status/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
-
-.. image:: https://img.shields.io/pypi/l/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
-
-.. image:: https://img.shields.io/pypi/dd/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
-
-.. image:: https://img.shields.io/pypi/dw/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
-
-.. image:: https://img.shields.io/pypi/dm/cpplint.svg
-    :target: https://pypi.python.org/pypi/cpplint
+.. image:: https://travis-ci.org/sebi2k1/cpplint.svg?branch=master
+    :target: https://travis-ci.org/sebi2k1/cpplint
 
 This project continues the work of cpplint, a C++ style checker following `Google's C++ style guide <http://google.github.io/styleguide/cppguide.html>`_. It provides cpplint as a PyPI package and adds a few features and fixes. It is maintained as a fork of `google/styleguide <https://github.com/google/styleguide>`_ in hopes that it can be merged in the future.
 
