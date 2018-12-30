@@ -6,13 +6,7 @@ cpplint - static code checker for C++
 
 This project continues the work of cpplint, a C++ style checker following `Google's C++ style guide <http://google.github.io/styleguide/cppguide.html>`_. It provides cpplint as a PyPI package and adds a few features and fixes. It is maintained as a fork of `google/styleguide <https://github.com/google/styleguide>`_ in hopes that it can be merged in the future.
 
-To install cpplint from PyPI, run:
-
-.. code-block:: bash
-
-    $ pip install cpplint
-
-Then run it with:
+Run it with:
 
 .. code-block:: bash
 
@@ -39,34 +33,11 @@ The modifications in this branch are minor fixes and cosmetic changes:
 * Overriding repository root auto-detection via --repository
 * Support ``#pragma once`` as an alternative to header include guards
 * Add quiet option to suppress non error-related output
-
-Development
------------
-
-.. code-block:: bash
-
-    pip install --user -e .[dev]
-    ./setup.py lint
-    ./setup.py style
-    ./setup.py test
-    ./setup.py ci # all the above
+* Curly braces on next line
+* White space adapations
 
 Maintaining
 -----------
-
-To release a new version:
-
-.. code-block:: bash
-
-    vi setup.py # increment the version
-    vi changelog.rst # log changes
-    git add setup.py changelog.rst
-    git commit -m "Releasing 0.0.6"
-    git tag 0.0.6
-    git push
-    git push --tags
-    python setup.py sdist register -r pypi
-    python setup.py sdist upload -r pypi
 
 To incorporate google's changes:
 
